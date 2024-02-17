@@ -8,17 +8,19 @@ LocadoraCarros/classe/ConexaoBanco.java
  LocadoraCarros.classe.ConexaoBanco
 LocadoraCarros/model/Modelo.java
  LocadoraCarros.model.Modelo
-LocadoraCarros/repositorys/ModeloRespository.java
- LocadoraCarros.repositorys.ModeloRespository
-LocadoraCarros/services/CarroService.java
- LocadoraCarros.services.CarroService
-LocadoraCarros/services/FabricanteService.java
- LocadoraCarros.services.FabricanteService
 LocadoraCarros/App.java
  LocadoraCarros.App
-LocadoraCarros/services/MenuService.java
- LocadoraCarros.services.MenuService
+LocadoraCarros/services/FabricanteService.java
+ LocadoraCarros.services.FabricanteService
 LocadoraCarros/services/MainService.java
  LocadoraCarros.services.MainService
+LocadoraCarros/services/ModeloService.java
+ LocadoraCarros.services.ModeloService
+LocadoraCarros/repositorys/ModeloRepository.java
+ LocadoraCarros.repositorys.ModeloRepository
 LocadoraCarros/model/Carro.java
  LocadoraCarros.model.Carro
+LocadoraCarros/services/CarroService.java
+ LocadoraCarros.services.CarroService
+LocadoraCarros/services/MenuService.java
+ LocadoraCarros.services.MenuService

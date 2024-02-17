@@ -88,4 +88,17 @@ public class Carro {
         this.valorLocacao = valorLocacao;
     }
 
+    @Override
+    public String toString() {
+        return "Carro{" +
+                "id=" + id +
+                ", idFabricante=" + idFabricante +
+                ", idModelo=" + idModelo +
+                ", placa='" + placa + '\'' +
+                ", cor='" + cor + '\'' +
+                ", disponivel=" + disponivel +
+                ", ano=" + ano +
+                ", valorLocacao=" + valorLocacao +
+                '}';
+    }
 }
