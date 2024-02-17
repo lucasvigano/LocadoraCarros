@@ -1,0 +1,24 @@
+LocadoraCarros/model/Fabricante.java
+ LocadoraCarros.model.Fabricante
+LocadoraCarros/repositorys/FabricanteRepository.java
+ LocadoraCarros.repositorys.FabricanteRepository
+LocadoraCarros/services/LeituraService.java
+ LocadoraCarros.services.LeituraService
+LocadoraCarros/classe/ConexaoBanco.java
+ LocadoraCarros.classe.ConexaoBanco
+LocadoraCarros/model/Modelo.java
+ LocadoraCarros.model.Modelo
+LocadoraCarros/repositorys/ModeloRespository.java
+ LocadoraCarros.repositorys.ModeloRespository
+LocadoraCarros/services/CarroService.java
+ LocadoraCarros.services.CarroService
+LocadoraCarros/services/FabricanteService.java
+ LocadoraCarros.services.FabricanteService
+LocadoraCarros/App.java
+ LocadoraCarros.App
+LocadoraCarros/services/MenuService.java
+ LocadoraCarros.services.MenuService
+LocadoraCarros/services/MainService.java
+ LocadoraCarros.services.MainService
+LocadoraCarros/model/Carro.java
+ LocadoraCarros.model.Carro
