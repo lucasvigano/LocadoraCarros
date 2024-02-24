@@ -42,6 +42,10 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblLista">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="verticalAlignment" type="int" value="1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

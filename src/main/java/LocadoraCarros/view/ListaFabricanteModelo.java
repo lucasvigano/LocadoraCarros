@@ -20,12 +20,13 @@ public class ListaFabricanteModelo extends javax.swing.JFrame {
     }
 
     public void setLista(List<String> pLista) {
-        String listagem = "";
+        String listagem = "<html>";
 
         for (String itemLista : pLista) {
-            listagem += itemLista + "\n";
+            listagem += itemLista + "<br>";
         }
-        
+
+        listagem+= "</html>";
         lblLista.setText(listagem);
     }
 
@@ -36,6 +37,9 @@ public class ListaFabricanteModelo extends javax.swing.JFrame {
         lblLista = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblLista.setToolTipText("");
+        lblLista.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

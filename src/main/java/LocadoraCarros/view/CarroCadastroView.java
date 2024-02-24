@@ -9,6 +9,7 @@ import LocadoraCarros.model.Carro;
 import LocadoraCarros.model.Fabricante;
 import LocadoraCarros.services.CarroService;
 import LocadoraCarros.services.FabricanteService;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -26,12 +27,14 @@ public class CarroCadastroView extends javax.swing.JFrame {
 
     public CarroCadastroView() {
         initComponents();
-//        try {
-//            MaskFormatter formatter = new MaskFormatter("###,##");
-//            txtModelo2.setFormatterFactory(new DefaultFormatterFactory(formatter));
-//        } catch (Exception ex) {
-//
-//        }
+        try {
+            MaskFormatter formatterDecimal = new MaskFormatter("###,##");
+            MaskFormatter formatter = new MaskFormatter("####");
+            txtAno.setFormatterFactory(new DefaultFormatterFactory(formatter));
+            txtValorLocacao.setFormatterFactory(new DefaultFormatterFactory(formatterDecimal));
+        } catch (Exception ex) {
+
+        }
     }
 
     public void salvar() {
@@ -44,6 +47,19 @@ public class CarroCadastroView extends javax.swing.JFrame {
         carroSalvar.setDisponivel(chkDisponivel.isSelected());
 
         new CarroService().salvar(carroSalvar);
+    }
+
+    private void exibirFabricantes() {
+        List<Fabricante> vFabricantes = new FabricanteService().consultar();
+        List<String> vLista = new ArrayList<>();
+
+        for (Fabricante fabricante : vFabricantes) {
+            vLista.add(fabricante.toString());
+        }
+
+        ListaFabricanteModelo tela = new ListaFabricanteModelo();
+        tela.setLista(vLista);
+        tela.setVisible(true);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -59,10 +75,11 @@ public class CarroCadastroView extends javax.swing.JFrame {
         txtPlaca = new javax.swing.JTextField();
         txtModelo = new javax.swing.JTextField();
         txtCor = new javax.swing.JTextField();
-        txtAno = new javax.swing.JTextField();
-        txtValorLocacao = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         chkDisponivel = new javax.swing.JCheckBox();
+        txtAno = new javax.swing.JFormattedTextField();
+        txtValorLocacao = new javax.swing.JFormattedTextField();
+        btnFabricantes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,9 +95,9 @@ public class CarroCadastroView extends javax.swing.JFrame {
 
         jLabel7.setText("Ano");
 
-        txtModelo.setColumns(2);
+        txtFabricante.setColumns(2);
 
-        txtCor.setColumns(10);
+        txtModelo.setColumns(2);
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +107,13 @@ public class CarroCadastroView extends javax.swing.JFrame {
         });
 
         chkDisponivel.setText("Disponível");
+
+        btnFabricantes.setText("Exibir Fabricantes");
+        btnFabricantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFabricantesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,15 +127,16 @@ public class CarroCadastroView extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnSalvar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel4)
                                     .addGap(10, 10, 10)
@@ -119,17 +144,20 @@ public class CarroCadastroView extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
+                                    .addGap(2, 2, 2)
+                                    .addComponent(btnFabricantes)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(chkDisponivel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(chkDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtValorLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtValorLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,7 +167,12 @@ public class CarroCadastroView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnFabricantes)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(chkDisponivel)))
@@ -150,10 +183,7 @@ public class CarroCadastroView extends javax.swing.JFrame {
                             .addComponent(txtCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -172,6 +202,10 @@ public class CarroCadastroView extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         salvar();
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnFabricantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFabricantesActionPerformed
+        exibirFabricantes();
+    }//GEN-LAST:event_btnFabricantesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,6 +243,7 @@ public class CarroCadastroView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFabricantes;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JCheckBox chkDisponivel;
     private javax.swing.JLabel jLabel1;
@@ -217,11 +252,11 @@ public class CarroCadastroView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField txtAno;
+    private javax.swing.JFormattedTextField txtAno;
     private javax.swing.JTextField txtCor;
     private javax.swing.JTextField txtFabricante;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtPlaca;
-    private javax.swing.JTextField txtValorLocacao;
+    private javax.swing.JFormattedTextField txtValorLocacao;
     // End of variables declaration//GEN-END:variables
 }

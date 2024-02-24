@@ -28,21 +28,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtPlaca" min="-2" pref="94" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtFabricante" min="-2" pref="94" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -50,14 +51,17 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtAno" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <Component id="txtAno" min="-2" pref="101" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                  <Component id="btnFabricantes" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="txtModelo" min="-2" pref="94" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="chkDisponivel" max="32767" attributes="0"/>
+                                  <Component id="chkDisponivel" min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -65,7 +69,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtValorLocacao" min="-2" pref="153" max="-2" attributes="0"/>
+                      <Component id="txtValorLocacao" min="-2" pref="101" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -79,7 +83,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtFabricante" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnFabricantes" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtModelo" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="chkDisponivel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -94,11 +105,7 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtFabricante" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -149,6 +156,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFabricante">
+      <Properties>
+        <Property name="columns" type="int" value="2"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPlaca">
     </Component>
@@ -158,13 +168,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCor">
-      <Properties>
-        <Property name="columns" type="int" value="10"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtAno">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtValorLocacao">
     </Component>
     <Component class="javax.swing.JButton" name="btnSalvar">
       <Properties>
@@ -178,6 +181,18 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Dispon&#xed;vel"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtAno">
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtValorLocacao">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnFabricantes">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Exibir Fabricantes"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFabricantesActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
