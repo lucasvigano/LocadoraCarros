@@ -2,12 +2,17 @@ package LocadoraCarros.services;
 
 import LocadoraCarros.model.Carro;
 import LocadoraCarros.model.Fabricante;
+import LocadoraCarros.repositorys.CarroRepository;
 import LocadoraCarros.repositorys.FabricanteRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarroService {
+
+    public void salvar(Carro pCarro) {
+        new CarroRepository().salvar(pCarro);
+    }
 
     public void cadastrar() {
         Carro carroCadastro = new Carro();
@@ -54,7 +59,9 @@ public class CarroService {
 
         carroCadastro.setValorLocacao(valorLocacao);
 
-        System.out.println(carroCadastro.toString());
+        new CarroRepository().salvar(carroCadastro);
+
+        System.out.println("SALVO COM SUCESSO!");
     }
 
     public String getPlaca() {

@@ -1,11 +1,12 @@
 package LocadoraCarros.services;
 
+import LocadoraCarros.view.MenuPrincipal;
+
 public class MainService {
 
     public void iniciarSistema() {
-        new MenuService().menuInicial();
-        
-        
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setVisible(true);
     }
 
 }
