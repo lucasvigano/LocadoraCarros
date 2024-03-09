@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CarroService {
 
-    public void salvar(Carro pCarro) {
+    public void salvar(Carro pCarro) throws Exception {
         new CarroRepository().salvar(pCarro);
     }
 
@@ -59,7 +59,7 @@ public class CarroService {
 
         carroCadastro.setValorLocacao(valorLocacao);
 
-        new CarroRepository().salvar(carroCadastro);
+//        new CarroRepository().salvar(carroCadastro);
 
         System.out.println("SALVO COM SUCESSO!");
     }
