@@ -9,22 +9,29 @@ LocadoraCarros/view/ListaFabricanteModelo.java
  LocadoraCarros.view.ListaFabricanteModelo$1
 LocadoraCarros/services/LeituraService.java
  LocadoraCarros.services.LeituraService
-LocadoraCarros/services/MainService.java
- LocadoraCarros.services.MainService
+LocadoraCarros/view/FabricanteCadastroView.java
+ LocadoraCarros.view.FabricanteCadastroView
+ LocadoraCarros.view.FabricanteCadastroView$1
+ LocadoraCarros.view.FabricanteCadastroView$2
 LocadoraCarros/App.java
  LocadoraCarros.App
-LocadoraCarros/repositorys/FabricanteRepository.java
- LocadoraCarros.repositorys.FabricanteRepository
+LocadoraCarros/services/MenuService.java
+ LocadoraCarros.services.MenuService
 LocadoraCarros/model/Carro.java
  LocadoraCarros.model.Carro
 LocadoraCarros/classe/ConexaoBanco.java
  LocadoraCarros.classe.ConexaoBanco
-LocadoraCarros/services/FabricanteService.java
- LocadoraCarros.services.FabricanteService
+LocadoraCarros/view/MenuPrincipal.java
+ LocadoraCarros.view.MenuPrincipal
+ LocadoraCarros.view.MenuPrincipal$1
+ LocadoraCarros.view.MenuPrincipal$2
+ LocadoraCarros.view.MenuPrincipal$3
 LocadoraCarros/repositorys/ModeloRepository.java
  LocadoraCarros.repositorys.ModeloRepository
 LocadoraCarros/model/Fabricante.java
  LocadoraCarros.model.Fabricante
+LocadoraCarros/repositorys/CarroRepository.java
+ LocadoraCarros.repositorys.CarroRepository
 LocadoraCarros/view/CarroCadastroView.java
  LocadoraCarros.view.CarroCadastroView
  LocadoraCarros.view.CarroCadastroView$1
@@ -32,11 +39,9 @@ LocadoraCarros/view/CarroCadastroView.java
  LocadoraCarros.view.CarroCadastroView$3
 LocadoraCarros/services/CarroService.java
  LocadoraCarros.services.CarroService
-LocadoraCarros/view/MenuPrincipal.java
- LocadoraCarros.view.MenuPrincipal
- LocadoraCarros.view.MenuPrincipal$1
- LocadoraCarros.view.MenuPrincipal$2
-LocadoraCarros/services/MenuService.java
- LocadoraCarros.services.MenuService
-LocadoraCarros/repositorys/CarroRepository.java
- LocadoraCarros.repositorys.CarroRepository
+LocadoraCarros/services/MainService.java
+ LocadoraCarros.services.MainService
+LocadoraCarros/services/FabricanteService.java
+ LocadoraCarros.services.FabricanteService
+LocadoraCarros/repositorys/FabricanteRepository.java
+ LocadoraCarros.repositorys.FabricanteRepository

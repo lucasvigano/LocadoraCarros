@@ -12,6 +12,20 @@ public class FabricanteService {
         return new FabricanteRepository().consultar();
     }
 
+    public Boolean fabricanteExiste(String pNomeFabricante) throws Exception {
+        return new FabricanteRepository().fabricanteExiste(pNomeFabricante);
+    }
+
+    public void salvar(Fabricante pFabricante) throws Exception {
+        //Verifica se o fabricante já não existe.
+        if (fabricanteExiste(pFabricante.getNome())) {
+            throw new Exception("Fabricante " + pFabricante.getNome()
+                    + " já cadastrado!");
+        } else {
+            new FabricanteRepository().salvar(pFabricante);
+        }
+    }
+
     public Long selecionar() {
         List<Fabricante> listaFabricante = consultar();
 
