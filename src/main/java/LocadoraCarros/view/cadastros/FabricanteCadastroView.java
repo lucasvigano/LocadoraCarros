@@ -1,4 +1,4 @@
-package LocadoraCarros.view;
+package LocadoraCarros.view.cadastros;
 
 import LocadoraCarros.model.Fabricante;
 import LocadoraCarros.services.FabricanteService;

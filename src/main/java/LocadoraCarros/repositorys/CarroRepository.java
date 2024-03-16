@@ -2,9 +2,13 @@ package LocadoraCarros.repositorys;
 
 import LocadoraCarros.classe.ConexaoBanco;
 import LocadoraCarros.model.Carro;
+import LocadoraCarros.model.Cliente;
+import LocadoraCarros.model.DTO.CarroDTO;
 import java.sql.ResultSet;
 
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CarroRepository {
 
@@ -34,5 +38,30 @@ public class CarroRepository {
         } catch (Exception ex) {
             throw ex;
         }
+    }
+
+    public List<CarroDTO> consultarDisponiveis() throws Exception {
+        Statement stm = ConexaoBanco.getConn().createStatement();
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("select c.id, c.placa, c.cor, c.valorlocacao, ")
+                .append("m.nome AS modelo, f.nome as fabricante")
+                .append(" from carro as c")
+                .append(" inner join modelo as m on m.id = c.id_modelo")
+                .append(" inner join fabricante as f on f.id = c.id_fabricante")
+                .append(" where disponivel = TRUE")
+                .append(" order by f.nome, m.nome");
+
+        ResultSet rst = stm.executeQuery(sql.toString());
+
+        List<CarroDTO> vCarro = new ArrayList<>();
+
+        while (rst.next()) {
+            vCarro.add(new CarroDTO(rst.getLong("id"), rst.getString("placa"),
+                    rst.getString("cor"), rst.getDouble("valorlocacao"),
+                    rst.getString("modelo"), rst.getString("fabricante")));
+        }
+
+        return vCarro;
     }
 }

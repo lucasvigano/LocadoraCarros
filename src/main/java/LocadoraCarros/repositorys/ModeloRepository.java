@@ -9,6 +9,29 @@ import java.util.List;
 
 public class ModeloRepository {
 
+    public List<Modelo> consultar() {
+        try {
+            Statement statement = ConexaoBanco.getConn().createStatement();
+            String sql = "SELECT * from modelo";
+
+            ResultSet result = statement.executeQuery(sql);
+
+            List<Modelo> listaModelo = new ArrayList<>();
+
+            while (result.next()) {
+                listaModelo.add(new Modelo(result.getLong("id"),
+                        result.getString("nome"),
+                        result.getLong("id_fabricante")));
+            }
+
+            return listaModelo;
+
+        } catch (Exception ex) {
+            System.out.println("Algo deu errado");
+            return null;
+        }
+    }
+
     public List<Modelo> consultar(Long idFabricante) {
         try {
             Statement statement = ConexaoBanco.getConn().createStatement();

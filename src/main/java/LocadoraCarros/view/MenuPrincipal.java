@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package LocadoraCarros.view;
+
+import LocadoraCarros.view.cadastros.CarroCadastroView;
+import LocadoraCarros.view.locacao.NovaLocacaoView;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,64 +26,84 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnCadastrarCarro = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mnuCadastrosCarro = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mnuLocacaoNovaLocacao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnCadastrarCarro.setText("Cadastrar Carro");
-        btnCadastrarCarro.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.setText("Cadastros");
+
+        mnuCadastrosCarro.setText("Carro");
+        mnuCadastrosCarro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarCarroActionPerformed(evt);
+                mnuCadastrosCarroActionPerformed(evt);
             }
         });
+        jMenu1.add(mnuCadastrosCarro);
 
-        jButton2.setText("Cadastrar Modelo");
+        jMenuItem2.setText("Cliente");
+        jMenu1.add(jMenuItem2);
 
-        jButton3.setText("Cadastrar Fabricante");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setText("Fabricante");
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Modelo");
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem5.setText("Seguradora");
+        jMenu1.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Locação");
+
+        mnuLocacaoNovaLocacao.setText("Nova Locação");
+        mnuLocacaoNovaLocacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                mnuLocacaoNovaLocacaoActionPerformed(evt);
             }
         });
+        jMenu2.add(mnuLocacaoNovaLocacao);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadastrarCarro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+            .addGap(0, 722, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnCadastrarCarro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 361, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastrarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCarroActionPerformed
+    private void mnuCadastrosCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastrosCarroActionPerformed
         CarroCadastroView view = new CarroCadastroView();
         view.setVisible(true);
-    }//GEN-LAST:event_btnCadastrarCarroActionPerformed
+    }//GEN-LAST:event_mnuCadastrosCarroActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        FabricanteCadastroView view = new FabricanteCadastroView();
-        view.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void mnuLocacaoNovaLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLocacaoNovaLocacaoActionPerformed
+        try {
+            NovaLocacaoView view = new NovaLocacaoView(this, true);
+            view.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_mnuLocacaoNovaLocacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,8 +141,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrarCarro;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem mnuCadastrosCarro;
+    private javax.swing.JMenuItem mnuLocacaoNovaLocacao;
     // End of variables declaration//GEN-END:variables
 }
