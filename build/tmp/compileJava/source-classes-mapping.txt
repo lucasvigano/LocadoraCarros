@@ -27,35 +27,44 @@ LocadoraCarros/model/DTO/CarroDTO.java
  LocadoraCarros.model.DTO.CarroDTO
 LocadoraCarros/model/Cliente.java
  LocadoraCarros.model.Cliente
-LocadoraCarros/services/CarroService.java
- LocadoraCarros.services.CarroService
+LocadoraCarros/view/cadastros/CarroCadastroView.java
+ LocadoraCarros.view.cadastros.CarroCadastroView
+ LocadoraCarros.view.cadastros.CarroCadastroView$1
+ LocadoraCarros.view.cadastros.CarroCadastroView$2
+ LocadoraCarros.view.cadastros.CarroCadastroView$3
 LocadoraCarros/classe/Uteis.java
  LocadoraCarros.classe.Uteis
 LocadoraCarros/model/Seguradora.java
  LocadoraCarros.model.Seguradora
 LocadoraCarros/repositorys/SeguradoraRepository.java
  LocadoraCarros.repositorys.SeguradoraRepository
-LocadoraCarros/repositorys/CarroRepository.java
- LocadoraCarros.repositorys.CarroRepository
+LocadoraCarros/services/MainService.java
+ LocadoraCarros.services.MainService
 LocadoraCarros/repositorys/ClienteRepository.java
  LocadoraCarros.repositorys.ClienteRepository
 LocadoraCarros/services/ModeloService.java
  LocadoraCarros.services.ModeloService
-LocadoraCarros/services/ClienteService.java
- LocadoraCarros.services.ClienteService
+LocadoraCarros/services/CarroService.java
+ LocadoraCarros.services.CarroService
 LocadoraCarros/repositorys/ModeloRepository.java
  LocadoraCarros.repositorys.ModeloRepository
-LocadoraCarros/view/cadastros/CarroCadastroView.java
- LocadoraCarros.view.cadastros.CarroCadastroView
- LocadoraCarros.view.cadastros.CarroCadastroView$1
- LocadoraCarros.view.cadastros.CarroCadastroView$2
- LocadoraCarros.view.cadastros.CarroCadastroView$3
-LocadoraCarros/view/locacao/NovaLocacaoView.java
- LocadoraCarros.view.locacao.NovaLocacaoView
+LocadoraCarros/repositorys/CarroRepository.java
+ LocadoraCarros.repositorys.CarroRepository
+LocadoraCarros/model/LocacaoDTO.java
+ LocadoraCarros.model.LocacaoDTO
 LocadoraCarros/view/MenuPrincipal.java
  LocadoraCarros.view.MenuPrincipal
  LocadoraCarros.view.MenuPrincipal$1
  LocadoraCarros.view.MenuPrincipal$2
  LocadoraCarros.view.MenuPrincipal$3
-LocadoraCarros/services/MainService.java
- LocadoraCarros.services.MainService
+LocadoraCarros/services/ClienteService.java
+ LocadoraCarros.services.ClienteService
+LocadoraCarros/services/LocacaoService.java
+ LocadoraCarros.services.LocacaoService
+LocadoraCarros/view/locacao/NovaLocacaoView.java
+ LocadoraCarros.view.locacao.NovaLocacaoView
+ LocadoraCarros.view.locacao.NovaLocacaoView$1
+ LocadoraCarros.view.locacao.NovaLocacaoView$2
+ LocadoraCarros.view.locacao.NovaLocacaoView$3
+ LocadoraCarros.view.locacao.NovaLocacaoView$4
+ LocadoraCarros.view.locacao.NovaLocacaoView$5

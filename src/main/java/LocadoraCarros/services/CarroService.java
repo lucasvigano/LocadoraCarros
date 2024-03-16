@@ -11,6 +11,10 @@ public class CarroService {
         new CarroRepository().salvar(pCarro);
     }
 
+    public List<CarroDTO> consultarTodos() throws Exception {
+        return new CarroRepository().consultarTodos();
+    }
+    
     public List<CarroDTO> consultarDisponiveis() throws Exception {
         return new CarroRepository().consultarDisponiveis();
     }

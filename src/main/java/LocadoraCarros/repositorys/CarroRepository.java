@@ -40,7 +40,15 @@ public class CarroRepository {
         }
     }
 
+    public List<CarroDTO> consultarTodos() throws Exception {
+        return consultar(Boolean.FALSE);
+    }
+
     public List<CarroDTO> consultarDisponiveis() throws Exception {
+        return consultar(Boolean.TRUE);
+    }
+
+    public List<CarroDTO> consultar(Boolean pConsultaDisponiveis) throws Exception {
         Statement stm = ConexaoBanco.getConn().createStatement();
         StringBuilder sql = new StringBuilder();
 
@@ -48,9 +56,13 @@ public class CarroRepository {
                 .append("m.nome AS modelo, f.nome as fabricante")
                 .append(" from carro as c")
                 .append(" inner join modelo as m on m.id = c.id_modelo")
-                .append(" inner join fabricante as f on f.id = c.id_fabricante")
-                .append(" where disponivel = TRUE")
-                .append(" order by f.nome, m.nome");
+                .append(" inner join fabricante as f on f.id = c.id_fabricante");
+
+        if (pConsultaDisponiveis) {
+            sql.append(" where disponivel = TRUE");
+        }
+
+        sql.append(" order by f.nome, m.nome");
 
         ResultSet rst = stm.executeQuery(sql.toString());
 

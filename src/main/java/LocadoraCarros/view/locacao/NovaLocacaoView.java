@@ -4,16 +4,19 @@ import LocadoraCarros.classe.Uteis;
 import LocadoraCarros.model.Carro;
 import LocadoraCarros.model.Cliente;
 import LocadoraCarros.model.DTO.CarroDTO;
+import LocadoraCarros.model.LocacaoDTO;
 import LocadoraCarros.model.Modelo;
 import LocadoraCarros.model.Seguradora;
 import LocadoraCarros.services.CarroService;
 import LocadoraCarros.services.ClienteService;
+import LocadoraCarros.services.LocacaoService;
 import LocadoraCarros.services.ModeloService;
 import LocadoraCarros.services.SeguradoraService;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -22,16 +25,31 @@ public class NovaLocacaoView extends javax.swing.JDialog {
     private List<Cliente> vCliente = new ArrayList<>();
     private List<CarroDTO> vCarro = new ArrayList();
     private List<Seguradora> vSeguradora = new ArrayList();
+    private LocacaoDTO oLocacao = new LocacaoDTO();
 
+    /***
+     * TODO - Ajustar o método calcular valor total na tela e no service
+     * - CLienteService.verificaValidadeCNH() - validar se a data da CNH está válida
+     * - Caso altere o valor de desconto - atualizar o valor total
+     * - caso altere o valode de acrescimo - atualizar valor total
+     * - preencher a data de Locacao, com a data atual
+     * - Atualizar a data PREV Devolução com a data atual + qtd Dias (Desafio)
+     * - OBS - AS DATAS deve ser no padrão DD/MM/yyyy (ex 01/03/2024)
+     */
     public NovaLocacaoView(Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
 
         //inicializa as mascaras dos campos de data e valor
-        inicializarMascaras();
+//        inicializarMascaras();
+
+        lblValorTotal.setText("0,00");
+        txtQtdDias.setText("01");
+
         //inicializa os combosbox
         inicializarComboBox();
-        lblValorTotal.setText("0,00");
+        carregarPlaca();
+        calcularValorTotal();
     }
 
     private void inicializarMascaras() throws Exception {
@@ -97,6 +115,7 @@ public class NovaLocacaoView extends javax.swing.JDialog {
 
     public void carregarComboBoxSeguradora() throws Exception {
         vSeguradora = new SeguradoraService().consultar();
+        vSeguradora.add(new Seguradora(-1L, "SEM SEGURO", 0D));
 
         Object[] valoresModel = new Object[vSeguradora.size()];
 
@@ -111,6 +130,38 @@ public class NovaLocacaoView extends javax.swing.JDialog {
         DefaultComboBoxModel model = new DefaultComboBoxModel(valoresModel);
 
         cboSeguradora.setModel(model);
+        cboSeguradora.setSelectedIndex(i - 1);
+    }
+
+    private void carregarPlaca() throws Exception {
+        if (vCarro.isEmpty()) {
+            return;
+        }
+
+        txtPlaca.setText(vCarro.get(cboCarro.getSelectedIndex()).getPlaca());
+    }
+
+    private void calcularValorTotal() throws Exception {
+        Double valorCarro = 0D;
+        Double valorSeguro = 0D;
+        Double valorDesconto = 0D;
+        Double valorAcrescimo = 0D;
+        //vai ter que aplicar uma regra pra nao dar caca caca.
+        Integer qtdDias = Integer.valueOf(txtQtdDias.getText().trim());
+
+        //atribuir o valor de cada variavel de acordo com o seu componente em tela.
+        Double valorTotal = new LocacaoService().calcularValorTotal(qtdDias, valorCarro, valorSeguro, valorDesconto, valorAcrescimo);
+
+        lblValorTotal.setText(Uteis.decimal2(valorTotal));
+    }
+
+    public void locar() throws Exception {
+        oLocacao.setCliente(vCliente.get(cboCliente.getSelectedIndex()));
+        new LocacaoService().locar(oLocacao);
+    }
+
+    public void devolver() throws Exception {
+
     }
 
     @SuppressWarnings("unchecked")
@@ -151,16 +202,34 @@ public class NovaLocacaoView extends javax.swing.JDialog {
 
         jLabel2.setText("Carro");
 
+        cboCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboCarroActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Seguradora");
+
+        cboSeguradora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboSeguradoraActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Data Locação");
 
         txtDataLocacao.setEnabled(false);
 
         lblValorTotal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblValorTotal.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblValorTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblValorTotal.setText("R$ 99.999,99");
         lblValorTotal.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        txtQtdDias.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtQtdDiasFocusLost(evt);
+            }
+        });
 
         jLabel6.setText("Quantidade Diarias");
 
@@ -174,7 +243,7 @@ public class NovaLocacaoView extends javax.swing.JDialog {
 
         jLabel9.setText("Desconto (%)");
 
-        jLabel10.setText("Acrescimo (%)");
+        jLabel10.setText("Multa");
 
         txtPlaca.setEnabled(false);
 
@@ -190,7 +259,7 @@ public class NovaLocacaoView extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,8 +280,8 @@ public class NovaLocacaoView extends javax.swing.JDialog {
                             .addComponent(txtDataDevolucao)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
@@ -291,8 +360,18 @@ public class NovaLocacaoView extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnLocar.setText("Locar");
+        btnLocar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocarActionPerformed(evt);
+            }
+        });
 
         btnDevolver.setText("Devolver");
+        btnDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDevolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -337,7 +416,53 @@ public class NovaLocacaoView extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocarActionPerformed
+        try {
+            locar();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnLocarActionPerformed
+
+    private void btnDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverActionPerformed
+        try {
+            devolver();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnDevolverActionPerformed
+
+    private void cboCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCarroActionPerformed
+        try {
+            carregarPlaca();
+            calcularValorTotal();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_cboCarroActionPerformed
+
+    private void cboSeguradoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSeguradoraActionPerformed
+        try {
+            calcularValorTotal();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_cboSeguradoraActionPerformed
+
+    private void txtQtdDiasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtdDiasFocusLost
+        try {
+            calcularValorTotal();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_txtQtdDiasFocusLost
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDevolver;
     private javax.swing.JButton btnLocar;
