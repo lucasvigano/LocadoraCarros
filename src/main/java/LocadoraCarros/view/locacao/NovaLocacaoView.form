@@ -301,6 +301,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtValorDesconto">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtValorDescontoFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
@@ -313,6 +316,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtAcrescimo">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtAcrescimoFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtPlaca">
           <Properties>

@@ -12,6 +12,7 @@ import LocadoraCarros.services.ClienteService;
 import LocadoraCarros.services.LocacaoService;
 import LocadoraCarros.services.ModeloService;
 import LocadoraCarros.services.SeguradoraService;
+
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +28,14 @@ public class NovaLocacaoView extends javax.swing.JDialog {
     private List<Seguradora> vSeguradora = new ArrayList();
     private LocacaoDTO oLocacao = new LocacaoDTO();
 
-    /***
-     * TODO - Ajustar o método calcular valor total na tela e no service
-     * - CLienteService.verificaValidadeCNH() - validar se a data da CNH está válida
-     * - Caso altere o valor de desconto - atualizar o valor total
-     * - caso altere o valode de acrescimo - atualizar valor total
-     * - preencher a data de Locacao, com a data atual
-     * - Atualizar a data PREV Devolução com a data atual + qtd Dias (Desafio)
-     * - OBS - AS DATAS deve ser no padrão DD/MM/yyyy (ex 01/03/2024)
+    /**
+     * *
+     *
+     * - Caso altere o valor de desconto - atualizar o valor total - caso altere
+     * o valode de acrescimo - atualizar valor total - preencher a data de
+     * Locacao, com a data atual - Atualizar a data PREV Devolução com a data
+     * atual + qtd Dias (Desafio) - OBS - AS DATAS deve ser no padrão DD/MM/yyyy
+     * (ex 01/03/2024)
      */
     public NovaLocacaoView(Frame parent, boolean modal) throws Exception {
         super(parent, modal);
@@ -42,14 +43,18 @@ public class NovaLocacaoView extends javax.swing.JDialog {
 
         //inicializa as mascaras dos campos de data e valor
 //        inicializarMascaras();
-
         lblValorTotal.setText("0,00");
         txtQtdDias.setText("01");
+        txtValorDesconto.setText("0");
+        txtAcrescimo.setText("0");
 
         //inicializa os combosbox
+        txtDataLocacao.setText(Uteis.getDataAtual());
+
         inicializarComboBox();
         carregarPlaca();
         calcularValorTotal();
+        calcularDataDevolucao();
     }
 
     private void inicializarMascaras() throws Exception {
@@ -142,14 +147,13 @@ public class NovaLocacaoView extends javax.swing.JDialog {
     }
 
     private void calcularValorTotal() throws Exception {
-        Double valorCarro = 0D;
-        Double valorSeguro = 0D;
-        Double valorDesconto = 0D;
-        Double valorAcrescimo = 0D;
-        //vai ter que aplicar uma regra pra nao dar caca caca.
+        Double valorCarro = vCarro.get(cboCarro.getSelectedIndex()).getValorLocacao();
+        Double valorSeguro = vSeguradora.get(cboSeguradora.getSelectedIndex()).getValor();
+        Double valorDesconto = txtValorDesconto.getText().isEmpty() ? 0D : Double.parseDouble(txtValorDesconto.getText().replace(",", "."));
+        Double valorAcrescimo = txtAcrescimo.getText().isEmpty() ? 0D : Double.parseDouble(txtAcrescimo.getText().replace(",", "."));
+
         Integer qtdDias = Integer.valueOf(txtQtdDias.getText().trim());
 
-        //atribuir o valor de cada variavel de acordo com o seu componente em tela.
         Double valorTotal = new LocacaoService().calcularValorTotal(qtdDias, valorCarro, valorSeguro, valorDesconto, valorAcrescimo);
 
         lblValorTotal.setText(Uteis.decimal2(valorTotal));
@@ -162,6 +166,37 @@ public class NovaLocacaoView extends javax.swing.JDialog {
 
     public void devolver() throws Exception {
 
+    }
+
+    private void validarCampoDesconto() throws Exception {
+        if (txtValorDesconto.getText().isEmpty()) {
+            if ((!txtValorDesconto.getText().contains(".") || !txtValorDesconto.getText().contains(",")) && !Uteis.eNumero(txtValorDesconto.getText())) {
+                txtValorDesconto.setText("0");
+            }
+        }
+    }
+
+    private void validarCampoAcrescimo() throws Exception {
+        if (txtAcrescimo.getText().isEmpty()) {
+            if ((!txtAcrescimo.getText().contains(".") || !txtAcrescimo.getText().contains(",")) && !Uteis.eNumero(txtAcrescimo.getText())) {
+                txtAcrescimo.setText("0");
+            }
+        }
+    }
+
+    private void validarCampoQtdDias() throws Exception {
+        if (txtQtdDias.getText().isEmpty()
+                || !Uteis.eNumero(txtQtdDias.getText())) {
+            txtQtdDias.setText("01");
+        }
+    }
+
+    private void calcularDataDevolucao() throws Exception {
+        validarCampoQtdDias();
+
+        int qtdDias = Integer.parseInt(txtQtdDias.getText());
+
+        txtDataDevolucao.setText(new LocacaoService().calcularDataDevolcao(qtdDias));
     }
 
     @SuppressWarnings("unchecked")
@@ -241,9 +276,21 @@ public class NovaLocacaoView extends javax.swing.JDialog {
 
         jLabel8.setText("Data Devolução");
 
+        txtValorDesconto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtValorDescontoFocusLost(evt);
+            }
+        });
+
         jLabel9.setText("Desconto (%)");
 
         jLabel10.setText("Multa");
+
+        txtAcrescimo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtAcrescimoFocusLost(evt);
+            }
+        });
 
         txtPlaca.setEnabled(false);
 
@@ -456,12 +503,34 @@ public class NovaLocacaoView extends javax.swing.JDialog {
 
     private void txtQtdDiasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtdDiasFocusLost
         try {
+            validarCampoQtdDias();
             calcularValorTotal();
+            calcularDataDevolucao();
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_txtQtdDiasFocusLost
+
+    private void txtValorDescontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorDescontoFocusLost
+        try {
+            validarCampoDesconto();
+            calcularValorTotal();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_txtValorDescontoFocusLost
+
+    private void txtAcrescimoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAcrescimoFocusLost
+        try {
+            validarCampoAcrescimo();
+            calcularValorTotal();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_txtAcrescimoFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDevolver;

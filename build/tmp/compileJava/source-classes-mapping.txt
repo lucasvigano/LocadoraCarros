@@ -1,66 +1,61 @@
-LocadoraCarros/model/Modelo.java
- LocadoraCarros.model.Modelo
-LocadoraCarros/view/cadastros/ListaFabricanteModelo.java
- LocadoraCarros.view.cadastros.ListaFabricanteModelo
- LocadoraCarros.view.cadastros.ListaFabricanteModelo$1
-LocadoraCarros/repositorys/FabricanteRepository.java
- LocadoraCarros.repositorys.FabricanteRepository
-LocadoraCarros/view/cadastros/FabricanteCadastroView.java
- LocadoraCarros.view.cadastros.FabricanteCadastroView
- LocadoraCarros.view.cadastros.FabricanteCadastroView$1
- LocadoraCarros.view.cadastros.FabricanteCadastroView$2
-LocadoraCarros/services/LeituraService.java
- LocadoraCarros.services.LeituraService
-LocadoraCarros/services/FabricanteService.java
- LocadoraCarros.services.FabricanteService
-LocadoraCarros/App.java
- LocadoraCarros.App
-LocadoraCarros/model/Fabricante.java
- LocadoraCarros.model.Fabricante
-LocadoraCarros/model/Carro.java
- LocadoraCarros.model.Carro
-LocadoraCarros/classe/ConexaoBanco.java
- LocadoraCarros.classe.ConexaoBanco
-LocadoraCarros/services/SeguradoraService.java
- LocadoraCarros.services.SeguradoraService
-LocadoraCarros/model/DTO/CarroDTO.java
- LocadoraCarros.model.DTO.CarroDTO
 LocadoraCarros/model/Cliente.java
  LocadoraCarros.model.Cliente
+LocadoraCarros/model/Modelo.java
+ LocadoraCarros.model.Modelo
+LocadoraCarros/repositorys/ClienteRepository.java
+ LocadoraCarros.repositorys.ClienteRepository
+LocadoraCarros/repositorys/SeguradoraRepository.java
+ LocadoraCarros.repositorys.SeguradoraRepository
+LocadoraCarros/model/Carro.java
+ LocadoraCarros.model.Carro
 LocadoraCarros/view/cadastros/CarroCadastroView.java
  LocadoraCarros.view.cadastros.CarroCadastroView
  LocadoraCarros.view.cadastros.CarroCadastroView$1
  LocadoraCarros.view.cadastros.CarroCadastroView$2
  LocadoraCarros.view.cadastros.CarroCadastroView$3
-LocadoraCarros/classe/Uteis.java
- LocadoraCarros.classe.Uteis
-LocadoraCarros/model/Seguradora.java
- LocadoraCarros.model.Seguradora
-LocadoraCarros/repositorys/SeguradoraRepository.java
- LocadoraCarros.repositorys.SeguradoraRepository
-LocadoraCarros/services/MainService.java
- LocadoraCarros.services.MainService
-LocadoraCarros/repositorys/ClienteRepository.java
- LocadoraCarros.repositorys.ClienteRepository
-LocadoraCarros/services/ModeloService.java
- LocadoraCarros.services.ModeloService
-LocadoraCarros/services/CarroService.java
- LocadoraCarros.services.CarroService
+LocadoraCarros/model/Fabricante.java
+ LocadoraCarros.model.Fabricante
 LocadoraCarros/repositorys/ModeloRepository.java
  LocadoraCarros.repositorys.ModeloRepository
-LocadoraCarros/repositorys/CarroRepository.java
- LocadoraCarros.repositorys.CarroRepository
+LocadoraCarros/view/cadastros/FabricanteCadastroView.java
+ LocadoraCarros.view.cadastros.FabricanteCadastroView
+ LocadoraCarros.view.cadastros.FabricanteCadastroView$1
+ LocadoraCarros.view.cadastros.FabricanteCadastroView$2
+LocadoraCarros/classe/ConexaoBanco.java
+ LocadoraCarros.classe.ConexaoBanco
+LocadoraCarros/services/MainService.java
+ LocadoraCarros.services.MainService
+LocadoraCarros/services/ModeloService.java
+ LocadoraCarros.services.ModeloService
+LocadoraCarros/repositorys/FabricanteRepository.java
+ LocadoraCarros.repositorys.FabricanteRepository
 LocadoraCarros/model/LocacaoDTO.java
  LocadoraCarros.model.LocacaoDTO
-LocadoraCarros/view/MenuPrincipal.java
- LocadoraCarros.view.MenuPrincipal
- LocadoraCarros.view.MenuPrincipal$1
- LocadoraCarros.view.MenuPrincipal$2
- LocadoraCarros.view.MenuPrincipal$3
+LocadoraCarros/services/SeguradoraService.java
+ LocadoraCarros.services.SeguradoraService
+LocadoraCarros/model/DTO/CarroDTO.java
+ LocadoraCarros.model.DTO.CarroDTO
+LocadoraCarros/services/LeituraService.java
+ LocadoraCarros.services.LeituraService
+LocadoraCarros/services/CarroService.java
+ LocadoraCarros.services.CarroService
+LocadoraCarros/view/cadastros/ListaFabricanteModelo.java
+ LocadoraCarros.view.cadastros.ListaFabricanteModelo
+ LocadoraCarros.view.cadastros.ListaFabricanteModelo$1
+LocadoraCarros/services/FabricanteService.java
+ LocadoraCarros.services.FabricanteService
+LocadoraCarros/App.java
+ LocadoraCarros.App
+LocadoraCarros/model/Seguradora.java
+ LocadoraCarros.model.Seguradora
+LocadoraCarros/repositorys/CarroRepository.java
+ LocadoraCarros.repositorys.CarroRepository
 LocadoraCarros/services/ClienteService.java
  LocadoraCarros.services.ClienteService
 LocadoraCarros/services/LocacaoService.java
  LocadoraCarros.services.LocacaoService
+LocadoraCarros/classe/Uteis.java
+ LocadoraCarros.classe.Uteis
 LocadoraCarros/view/locacao/NovaLocacaoView.java
  LocadoraCarros.view.locacao.NovaLocacaoView
  LocadoraCarros.view.locacao.NovaLocacaoView$1
@@ -68,3 +63,10 @@ LocadoraCarros/view/locacao/NovaLocacaoView.java
  LocadoraCarros.view.locacao.NovaLocacaoView$3
  LocadoraCarros.view.locacao.NovaLocacaoView$4
  LocadoraCarros.view.locacao.NovaLocacaoView$5
+ LocadoraCarros.view.locacao.NovaLocacaoView$6
+ LocadoraCarros.view.locacao.NovaLocacaoView$7
+LocadoraCarros/view/MenuPrincipal.java
+ LocadoraCarros.view.MenuPrincipal
+ LocadoraCarros.view.MenuPrincipal$1
+ LocadoraCarros.view.MenuPrincipal$2
+ LocadoraCarros.view.MenuPrincipal$3

@@ -1,7 +1,9 @@
 package LocadoraCarros.services;
 
+import LocadoraCarros.classe.Uteis;
 import LocadoraCarros.model.Cliente;
 import LocadoraCarros.repositorys.ClienteRepository;
+
 import java.util.List;
 
 public class ClienteService {
@@ -15,7 +17,10 @@ public class ClienteService {
             throw new Exception("Data de Vencimento não Informada!");
         }
 
-       
-        return Boolean.FALSE;
+        if (Uteis.diferencaDatas(pCliente.getDataVencimentoCNH(), "2024-03-22", "d") < 0) {
+            return Boolean.FALSE;
+        }
+
+        return Boolean.TRUE;
     }
 }
