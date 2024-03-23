@@ -17,7 +17,7 @@ public class ClienteService {
             throw new Exception("Data de Vencimento não Informada!");
         }
 
-        if (Uteis.diferencaDatas(pCliente.getDataVencimentoCNH(), "2024-03-22", "d") < 0) {
+        if (Uteis.diferencaDatas(Uteis.getDataAtual(), Uteis.dataGUI(pCliente.getDataVencimentoCNH()), "d") < 0) {
             return Boolean.FALSE;
         }
 

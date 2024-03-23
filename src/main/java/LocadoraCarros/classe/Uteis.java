@@ -195,4 +195,12 @@ public class Uteis {
         }
     }
 
+    public static String dataGUI(String i_data) throws Exception {
+        return dataGUI(new SimpleDateFormat("yyyy-MM-dd").parse(i_data));
+    }
+
+    public static String dataGUI(Date i_data) throws Exception {
+        return new SimpleDateFormat("dd/MM/yyyy").format(i_data);
+    }
+
 }

@@ -28,15 +28,6 @@ public class NovaLocacaoView extends javax.swing.JDialog {
     private List<Seguradora> vSeguradora = new ArrayList();
     private LocacaoDTO oLocacao = new LocacaoDTO();
 
-    /**
-     * *
-     *
-     * - Caso altere o valor de desconto - atualizar o valor total - caso altere
-     * o valode de acrescimo - atualizar valor total - preencher a data de
-     * Locacao, com a data atual - Atualizar a data PREV Devolução com a data
-     * atual + qtd Dias (Desafio) - OBS - AS DATAS deve ser no padrão DD/MM/yyyy
-     * (ex 01/03/2024)
-     */
     public NovaLocacaoView(Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
@@ -65,7 +56,7 @@ public class NovaLocacaoView extends javax.swing.JDialog {
         //formata campos para o tipo de data.
         txtDataLocacao.setFormatterFactory(new DefaultFormatterFactory(formatterData));
         txtDataDevolucao.setFormatterFactory(new DefaultFormatterFactory(formatterData));
-        txtDataDevolvida.setFormatterFactory(new DefaultFormatterFactory(formatterData));
+        txtDataDevolvido.setFormatterFactory(new DefaultFormatterFactory(formatterData));
 
         //formata os campos para valores numéricos decimais
         txtValorDesconto.setFormatterFactory(new DefaultFormatterFactory(formatterDecimal));
@@ -151,7 +142,7 @@ public class NovaLocacaoView extends javax.swing.JDialog {
         Double valorSeguro = vSeguradora.get(cboSeguradora.getSelectedIndex()).getValor();
         Double valorDesconto = txtValorDesconto.getText().isEmpty() ? 0D : Double.parseDouble(txtValorDesconto.getText().replace(",", "."));
         Double valorAcrescimo = txtAcrescimo.getText().isEmpty() ? 0D : Double.parseDouble(txtAcrescimo.getText().replace(",", "."));
-
+        
         Integer qtdDias = Integer.valueOf(txtQtdDias.getText().trim());
 
         Double valorTotal = new LocacaoService().calcularValorTotal(qtdDias, valorCarro, valorSeguro, valorDesconto, valorAcrescimo);
@@ -161,6 +152,16 @@ public class NovaLocacaoView extends javax.swing.JDialog {
 
     public void locar() throws Exception {
         oLocacao.setCliente(vCliente.get(cboCliente.getSelectedIndex()));
+        oLocacao.setCarro(vCarro.get(cboCarro.getSelectedIndex()));
+        oLocacao.setSeguradora(vSeguradora.get(cboSeguradora.getSelectedIndex()));
+        oLocacao.setDataLocacao(txtDataLocacao.getText());
+        oLocacao.setDataPrevDevolucao(txtDataDevolucao.getText());
+        oLocacao.setDataDevolvido(txtDataDevolvido.getText());
+        oLocacao.setQtdDias(Integer.parseInt(txtQtdDias.getText()));
+        oLocacao.setValorTotal(Double.parseDouble(lblValorTotal.getText().replace(".", "").replace(",", ".")));
+        oLocacao.setValorDesconto(Double.parseDouble(txtValorDesconto.getText().replace(",", ".")));
+        oLocacao.setValorAcrescimo(Double.parseDouble(txtAcrescimo.getText().replace(",", ".")));
+        
         new LocacaoService().locar(oLocacao);
     }
 
@@ -217,7 +218,7 @@ public class NovaLocacaoView extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         txtDataDevolucao = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtDataDevolvida = new javax.swing.JFormattedTextField();
+        txtDataDevolvido = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
         txtValorDesconto = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -272,7 +273,7 @@ public class NovaLocacaoView extends javax.swing.JDialog {
 
         jLabel7.setText("Data Prev. Devolução");
 
-        txtDataDevolvida.setEnabled(false);
+        txtDataDevolvido.setEnabled(false);
 
         jLabel8.setText("Data Devolução");
 
@@ -335,7 +336,7 @@ public class NovaLocacaoView extends javax.swing.JDialog {
                             .addComponent(txtPlaca)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDataDevolvida, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDataDevolvido, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,7 +401,7 @@ public class NovaLocacaoView extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel8)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtDataDevolvida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtDataDevolvido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -553,7 +554,7 @@ public class NovaLocacaoView extends javax.swing.JDialog {
     private javax.swing.JLabel lblValorTotal;
     private javax.swing.JFormattedTextField txtAcrescimo;
     private javax.swing.JFormattedTextField txtDataDevolucao;
-    private javax.swing.JFormattedTextField txtDataDevolvida;
+    private javax.swing.JFormattedTextField txtDataDevolvido;
     private javax.swing.JFormattedTextField txtDataLocacao;
     private javax.swing.JFormattedTextField txtPlaca;
     private javax.swing.JFormattedTextField txtQtdDias;

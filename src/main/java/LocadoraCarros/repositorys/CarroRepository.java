@@ -76,4 +76,17 @@ public class CarroRepository {
 
         return vCarro;
     }
+
+    public void setIndisponivel(Statement statement, Long idCarro) throws Exception {
+        statement.execute("UPDATE carro SET disponivel = FALSE WHERE id = " + idCarro);
+    }
+
+    public boolean verificaDisponibilidade(Statement statement, Long id) throws Exception {
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT id FROM carro where disponivel = TRUE and id = ").append(id);
+
+        ResultSet resultSet = statement.executeQuery(sql.toString());
+
+        return resultSet.next();
+    }
 }
